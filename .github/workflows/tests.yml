@@ -49,13 +49,14 @@ jobs:
     if: ${{ always() }}
     steps:
       - name: Coveralls Finished
+        id: coveralls-finished
         uses: coverallsapp/github-action@v2
         with:
           parallel-finished: true
           carryforward: "python-${{ inputs.python-version }}"
       - name: Get coveralls endpoint
         id: coveralls
-        run: echo "$COVERALLS_ENDPOINT"
+        run: echo "${{ steps.coveralls-finished.outputs.coveralls-api-result }}"
       - name: Comment on PR
         uses: mshick/add-pr-comment@v2
         with:
