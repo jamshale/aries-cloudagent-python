@@ -57,4 +57,4 @@ jobs:
       - name: Pytest coverage comment
         uses: MishaKav/pytest-coverage-comment@v1.1.51
         with:
-          pytest-coverage-path: ./pytest.log
+          pytest-coverage-path: pytest.log
