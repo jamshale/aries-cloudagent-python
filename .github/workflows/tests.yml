@@ -44,6 +44,8 @@ jobs:
         uses: MishaKav/pytest-coverage-comment@v1.1.51
         with:
           pytest-coverage-path: pytest.log
+          title: Coverage Report
+          badge-title: Unit Test Coverage
           report-only-changed-files: true
   code-coverage:
     name: Generate code coverage report
