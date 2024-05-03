@@ -202,6 +202,7 @@ class AnonCredsHolder:
                 credential_definition,
                 rev_reg_def,
             )
+            print("TEST")
         except AnoncredsError as err:
             raise AnonCredsHolderError("Error processing received credential") from err
 
