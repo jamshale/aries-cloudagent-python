@@ -44,7 +44,7 @@ jobs:
         uses: MishaKav/pytest-coverage-comment@v1.1.51
         with:
           pytest-coverage-path: pytest.log
-          hide-reort: true
+          hide-report: true
   code-coverage:
     name: Generate code coverage report
     runs-on: ${{ inputs.os }}
