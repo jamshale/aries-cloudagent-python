@@ -52,7 +52,10 @@ jobs:
         uses: coverallsapp/github-action@v2
         with:
           parallel-finished: true
-          carryforward: "python-3.11"
+          carryforward: "python-${{ inputs.python-version }}"
+      - name: Get coveralls endpoint
+        id: coveralls
+        run: echo $COVERALLS_ENDPOINT
       - name: Comment on PR
         uses: mshick/add-pr-comment@v2
         with:
