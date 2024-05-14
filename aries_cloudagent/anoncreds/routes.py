@@ -666,6 +666,7 @@ async def rev_list_post(request: web.BaseRequest):
 
     is_not_anoncreds_profile_raise_web_exception(profile)
 
+
     body = await request.json()
     rev_reg_def_id = body.get("rev_reg_def_id")
     options = body.get("options", {})
