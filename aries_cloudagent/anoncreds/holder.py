@@ -495,7 +495,7 @@ class AnonCredsHolder:
         def get_rev_state(cred_id: str, detail: dict):
             cred = creds[cred_id]
             rev_reg_id = cred.rev_reg_id
-            timestamp = detail.get("test") if rev_reg_id else None
+            timestamp = detail.get("timestamp") if rev_reg_id else None
             rev_state = None
             if timestamp:
                 if not rev_states or rev_reg_id not in rev_states:
