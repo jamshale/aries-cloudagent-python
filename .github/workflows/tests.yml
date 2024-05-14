@@ -28,7 +28,7 @@ jobs:
           poetry install --all-extras
       - name: Tests
         run: |
-          poetry run pytest --cov --cov-report lcov --cov-report=term-missing:skip-covered 2>&1 | tee pytest.log
+          poetry run pytest --cov --cov-report lcov 2>&1 | tee pytest.log
           PYTEST_EXIT_CODE=${PIPESTATUS[0]}
           if grep -Eq "RuntimeWarning: coroutine .* was never awaited" pytest.log; then
             echo "Failure: Detected unawaited coroutine warning in pytest output."
@@ -37,8 +37,10 @@ jobs:
           exit $PYTEST_EXIT_CODE
       - name: Coveralls Parrallel
         uses: coverallsapp/github-action@v2
+        github-token: ${{ secrets.GITHUB_TOKEN }}
         with:
           parallel: true
+          debug: true
           flag-name: python-${{ inputs.python-version }}
       # - name: Pytest coverage comment
       #   uses: MishaKav/pytest-coverage-comment@v1.1.51
