@@ -40,13 +40,13 @@ jobs:
         with:
           parallel: true
           flag-name: python-${{ inputs.python-version }}
-      - name: Pytest coverage comment
-        uses: MishaKav/pytest-coverage-comment@v1.1.51
-        with:
-          pytest-coverage-path: pytest.log
-          title: Coverage Report - See coveralls report in PR Tests action for full ui and details
-          badge-title: Unit Test Coverage
-          report-only-changed-files: true
+      # - name: Pytest coverage comment
+      #   uses: MishaKav/pytest-coverage-comment@v1.1.51
+      #   with:
+      #     pytest-coverage-path: pytest.log
+      #     title: Coverage Report - See coveralls report in PR Tests action for full ui and details
+      #     badge-title: Unit Test Coverage
+      #     report-only-changed-files: true
   code-coverage:
     name: Generate code coverage report
     runs-on: ${{ inputs.os }}
