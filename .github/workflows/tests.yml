@@ -61,5 +61,7 @@ jobs:
         id: coveralls-finished
         uses: coverallsapp/github-action@v2
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          debug: true
           parallel-finished: true
           carryforward: "python-${{ inputs.python-version }}"
