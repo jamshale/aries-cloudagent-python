@@ -7,16 +7,9 @@ import re
 import uuid
 from typing import Dict, Optional, Sequence, Tuple, Union
 
-from anoncreds import (
-    AnoncredsError,
-    Credential,
-    CredentialRequest,
-    CredentialRevocationState,
-    Presentation,
-    PresentCredentials,
-    create_link_secret,
-    W3cCredential,
-)
+from anoncreds import (AnoncredsError, Credential, CredentialRequest,
+                       CredentialRevocationState, Presentation,
+                       PresentCredentials, W3cCredential, create_link_secret)
 from aries_askar import AskarError, AskarErrorCode
 
 from ..anoncreds.models.anoncreds_schema import AnonCredsSchema
@@ -571,7 +564,7 @@ class AnonCredsHolder:
         def get_rev_state(cred_id: str, detail: dict):
             cred = creds[cred_id]
             rev_reg_id = cred.rev_reg_id
-            timestamp = detail.get("timestamp") if rev_reg_id else None
+            timestamp = detail.get("test") if rev_reg_id else None
             rev_state = None
             if timestamp:
                 if not rev_states or rev_reg_id not in rev_states:
