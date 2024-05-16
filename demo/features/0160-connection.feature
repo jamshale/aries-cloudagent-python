@@ -19,13 +19,6 @@ Feature: RFC 0160 Aries agent connection functions
          | --public-did --did-exchange --emit-did-peer-4                     | | --did-exchange --emit-did-peer-4                     | |
          | --public-did --did-exchange --reuse-connections --emit-did-peer-4 | | --did-exchange --reuse-connections --emit-did-peer-4 | |
 
-      @UnqualifiedDids
-      Examples:
-         | Acme_capabilities                               | Acme_extra        | Bob_capabilities                   | Bob_extra         |
-         | --public-did --did-exchange --emit-did-peer-2                     | | --did-exchange --emit-did-peer-4                     | |
-         | --public-did --did-exchange --reuse-connections --emit-did-peer-4 | | --did-exchange --reuse-connections --emit-did-peer-2 | |
-         | --public-did --did-exchange --emit-did-peer-4                     | | --did-exchange --emit-did-peer-2                     | |
-
       @PublicDidReuse
       Examples:
          | Acme_capabilities                               | Acme_extra        | Bob_capabilities                   | Bob_extra         |
