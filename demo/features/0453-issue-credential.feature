@@ -12,37 +12,37 @@ Feature: RFC 0453 Aries agent issue credential
     When "Acme" offers a credential with data <Credential_data>
     Then "Bob" has the credential issued
 
-    @PR @WalletType_Askar @BasicTest
+    @Full @WalletType_Askar @BasicTest
     Examples:
        | Acme_capabilities                      | Bob_capabilities          | Schema_name    | Credential_data          | Acme_extra | Bob_extra |
        | --public-did --did-exchange            | --did-exchange            | driverslicense | Data_DL_NormalizedValues |            |           |
 
-    @PR @WalletType_Askar @AltTests
+    @Full @WalletType_Askar @AltTests
     Examples:
        | Acme_capabilities                      | Bob_capabilities          | Schema_name    | Credential_data          | Acme_extra | Bob_extra |
        | --public-did                           |                           | driverslicense | Data_DL_NormalizedValues |            |           |
        | --public-did --mediation               | --mediation               | driverslicense | Data_DL_NormalizedValues |            |           |
        | --public-did --multitenant             | --multitenant --log-file  | driverslicense | Data_DL_NormalizedValues |            |           |
 
-    @PR @WalletType_Askar_AnonCreds @BasicTest
+    @Full @WalletType_Askar_AnonCreds @BasicTest
     Examples:
        | Acme_capabilities                          | Bob_capabilities              | Schema_name    | Credential_data          | Acme_extra | Bob_extra |
        | --public-did --wallet-type askar-anoncreds | --wallet-type askar-anoncreds | driverslicense | Data_DL_NormalizedValues |            |           |
        | --public-did --wallet-type askar-anoncreds --cred-type vc_di | --wallet-type askar-anoncreds | driverslicense | Data_DL_NormalizedValues |   |   |
 
-    @PR @WalletType_Askar_AnonCreds @AltTests
+    @Full @WalletType_Askar_AnonCreds @AltTests
     Examples:
        | Acme_capabilities                          | Bob_capabilities              | Schema_name    | Credential_data          | Acme_extra | Bob_extra |
        | --public-did --wallet-type askar-anoncreds |                               | driverslicense | Data_DL_NormalizedValues |            |           |
        | --public-did                               | --wallet-type askar-anoncreds | driverslicense | Data_DL_NormalizedValues |            |           |
 
-    @PR @WalletType_Askar @ConnectionTests
+    @Full @WalletType_Askar @ConnectionTests
     Examples:
        | Acme_capabilities                  | Bob_capabilities                                     | Schema_name    | Credential_data          | Acme_extra        | Bob_extra         |
        | --did-exchange --emit-did-peer-4 | --did-exchange --emit-did-peer-4                     | driverslicense | Data_DL_NormalizedValues | | |
        | --did-exchange --reuse-connections --emit-did-peer-4 | --did-exchange --reuse-connections --emit-did-peer-4 | driverslicense | Data_DL_NormalizedValues | | |
 
-    @PR @WalletType_Askar_AnonCreds @ConnectionTests
+    @Full @WalletType_Askar_AnonCreds @ConnectionTests
     Examples:
        | Acme_capabilities                                                | Bob_capabilities                                                 | Schema_name    | Credential_data          | Acme_extra        | Bob_extra         |
        | --did-exchange --wallet-type askar-anoncreds --emit-did-peer-4                    | --did-exchange --wallet-type askar-anoncreds --emit-did-peer-4                    | driverslicense | Data_DL_NormalizedValues | | |
@@ -213,7 +213,7 @@ Feature: RFC 0453 Aries agent issue credential
        | --public-did --cred-type json-ld --wallet-type askar-anoncreds | --wallet-type askar-anoncreds | driverslicense | Data_DL_NormalizedValues |
 
 
-  @T004-RFC0453
+  @T004-RFC0453 @Full
   Scenario Outline: Issue a credential with revocation, with the Issuer beginning with an offer, and then revoking the credential
     Given we have "2" agents
       | name  | role    | capabilities        |
@@ -224,7 +224,7 @@ Feature: RFC 0453 Aries agent issue credential
     Then "Acme" revokes the credential
     And "Bob" has the credential issued
 
-    @PR @WalletType_Askar
+    @WalletType_Askar
     Examples:
        | Acme_capabilities                        | Bob_capabilities  | Schema_name    | Credential_data          |
        | --revocation --public-did                |                   | driverslicense | Data_DL_NormalizedValues |

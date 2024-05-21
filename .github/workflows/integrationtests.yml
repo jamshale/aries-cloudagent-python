@@ -54,4 +54,4 @@ jobs:
         if: (steps.should_create_release.outputs.should_create_release == 'true' || github.event_name == 'schedule')
         uses: ./.github/actions/run-integration-tests
         with:
-          TEST_SCOPE: "-t @FULL"
+          TEST_SCOPE: "-t @Full"
