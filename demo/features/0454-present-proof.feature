@@ -12,13 +12,13 @@ Feature: RFC 0454 Aries agent present proof
       When "Faber" sends a request for proof presentation <Proof_request> to "Bob"
       Then "Faber" has the proof verified
 
-      @GHA @WalletType_Askar
+      @PR @WalletType_Askar
       Examples:
          | issuer | Acme_capabilities                      | Bob_capabilities          | Schema_name       | Credential_data   | Proof_request     |
          | Faber  | --public-did                           |                           | driverslicense_v2 | Data_DL_MaxValues | DL_age_over_19_v2 |
          | Faber  | --public-did --did-exchange            | --did-exchange            | driverslicense_v2 | Data_DL_MaxValues | DL_age_over_19_v2 |
 
-      @GHA @WalletType_Askar_AnonCreds
+      @PR @WalletType_Askar_AnonCreds
       Examples:
          | issuer | Acme_capabilities                      | Bob_capabilities          | Schema_name       | Credential_data   | Proof_request     |
          | Faber  | --public-did --wallet-type askar-anoncreds | --wallet-type askar-anoncreds | driverslicense_v2 | Data_DL_MaxValues | DL_age_over_19_v2 |
@@ -26,7 +26,7 @@ Feature: RFC 0454 Aries agent present proof
          | Faber  | --public-did                           | --wallet-type askar-anoncreds | driverslicense_v2 | Data_DL_MaxValues | DL_age_over_19_v2 |
 
 
-   @T001-RFC0454-DID-PEER @GHA
+   @T001-RFC0454-DID-PEER @PR
    Scenario Outline: Present Proof where the prover does not propose a presentation of the proof and is acknowledged
       Given we have "2" agents
          | name  | role     | capabilities        | extra        |
@@ -90,7 +90,7 @@ Feature: RFC 0454 Aries agent present proof
       When "Faber" sends a request for json-ld proof presentation <Proof_request> to "Bob"
       Then "Faber" has the proof verified
 
-      @GHA @WalletType_Askar
+      @PR @WalletType_Askar
       Examples:
          | issuer | Acme_capabilities                                         | Bob_capabilities          | Schema_name       | Credential_data   | Proof_request     |
          | Acme   | --public-did --cred-type json-ld                          |                           | driverslicense_v2 | Data_DL_MaxValues | DL_age_over_19_v2 |
@@ -115,13 +115,13 @@ Feature: RFC 0454 Aries agent present proof
       When "Faber" sends a request for proof presentation <Proof_request> to "Bob"
       Then "Faber" has the proof verification fail
 
-      @GHA @WalletType_Askar
+      @PR @WalletType_Askar
       Examples:
          | issuer | Acme_capabilities                          | Bob_capabilities | Schema_name       | Credential_data   | Proof_request     |
          | Faber  | --revocation --public-did                  |                  | driverslicense_v2 | Data_DL_MaxValues | DL_age_over_19_v2 |
          | Faber  | --revocation --public-did --did-exchange   | --did-exchange   | driverslicense_v2 | Data_DL_MaxValues | DL_age_over_19_v2 |
 
-      @GHA @WalletType_Askar_AnonCreds
+      @PR @WalletType_Askar_AnonCreds
       Examples:
          | issuer | Acme_capabilities                          | Bob_capabilities | Schema_name       | Credential_data   | Proof_request     |
          | Faber  | --revocation --public-did --wallet-type askar-anoncreds | --wallet-type askar-anoncreds | driverslicense_v2 | Data_DL_MaxValues | DL_age_over_19_v2 |
@@ -172,7 +172,7 @@ Feature: RFC 0454 Aries agent present proof
       When "Faber" sends a request for proof presentation <Proof_request> to "Bob"
       Then "Faber" has the proof verified
 
-      @GHA @WalletType_Askar
+      @PR @WalletType_Askar
       Examples:
          | issuer1 | Acme1_capabilities        | issuer2 | Acme2_capabilities | Bob_cap | Schema_name_1     | Credential_data_1 | Schema_name_2 | Credential_data_2 | Proof_request                    |
          | Acme1   | --revocation --public-did | Acme2   | --public-did       |         | driverslicense_v2 | Data_DL_MaxValues | health_id     | Data_DL_MaxValues | DL_age_over_19_v2_with_health_id |
@@ -225,7 +225,7 @@ Feature: RFC 0454 Aries agent present proof
       When "Faber" sends a request for proof presentation <Proof_request> to "Bob"
       Then "Faber" has the proof verification fail
 
-      @GHA @WalletType_Askar
+      @PR @WalletType_Askar
       Examples:
          | issuer1 | Acme1_capabilities        | issuer2 | Acme2_capabilities | Bob_cap | Schema_name_1     | Credential_data_1 | Schema_name_2 | Credential_data_2 | Proof_request                    |
          | Acme1   | --revocation --public-did | Acme2   | --public-did       |         | driverslicense_v2 | Data_DL_MaxValues | health_id     | Data_DL_MaxValues | DL_age_over_19_v2_with_health_id |
@@ -253,7 +253,7 @@ Feature: RFC 0454 Aries agent present proof
       When "Faber" sends a request with explicit revocation status for proof presentation <Proof_request> to "Bob"
       Then "Faber" has the proof verified
 
-      @GHA @WalletType_Askar
+      @PR @WalletType_Askar
       Examples:
          | issuer1 | Acme1_capabilities        | issuer2 | Acme2_capabilities | Bob_cap | Schema_name_1     | Credential_data_1 | Schema_name_2 | Credential_data_2 | Proof_request                             |
          | Acme1   | --revocation --public-did | Acme2   | --public-did       |         | driverslicense_v2 | Data_DL_MaxValues | health_id     | Data_DL_MaxValues | DL_age_over_19_v2_with_health_id_no_revoc |
