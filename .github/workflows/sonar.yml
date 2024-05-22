@@ -39,16 +39,35 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Checkout base branch
-        if: github.event.workflow_run.event == 'pull_request'
         run: |
-          echo ${{ github.event.repository.clone_url }}
-          git remote add upstream ${{ github.event.repository.clone_url }}
-          git fetch upstream
-          git checkout -B ${{ fromJson(steps.get_pr_data.outputs.data).base.ref }} upstream/${{ fromJson(steps.get_pr_data.outputs.data).base.ref }}
-          echo ${{ github.event.workflow_run.head_branch }}
-          git checkout origin/${{ github.event.workflow_run.head_branch }}
+          echo forked repo = ${{ fromJson(steps.get_pr_data.outputs.data).head.repo.html_url }}.git
+          echo base repo = ${{ github.event.repository.clone_url }}
+          git remote add upstream ${{ fromJson(steps.get_pr_data.outputs.data).head.repo.html_url }}.git
+          git fetch --all
+
+          echo -------
+          echo pr number = ${{ fromJson(steps.get_pr_data.outputs.data).number }} 
+          echo forked branch = ${{ fromJson(steps.get_pr_data.outputs.data).head.ref }} 
+          echo base branch = ${{ fromJson(steps.get_pr_data.outputs.data).base.ref }}
+          echo -------
+          git checkout -B ${{ fromJson(steps.get_pr_data.outputs.data).head.ref }} upstream/${{ fromJson(steps.get_pr_data.outputs.data).head.ref }}
+          echo $(ls .)
+      - name: Move Coverage Report
+        run: |
+          mkdir test-reports
+          mv coverage.xml test-reports
+          echo $(ls .)
+          echo $(ls test-reports)
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with: 
+          args: >
+            -Dsonar.scm.revision=${{ github.event.workflow_run.head_sha }} 
+            -Dsonar.pullrequest.key=${{ fromJson(steps.get_pr_data.outputs.data).number }} 
+            -Dsonar.pullrequest.branch=${{ fromJson(steps.get_pr_data.outputs.data).head.ref }} 
+            -Dsonar.pullrequest.base=${{ fromJson(steps.get_pr_data.outputs.data).base.ref }}
+            -Dsonar.python.coverage.reportPaths=test-reports/coverage.xml
+            -Dsonar.sources=./
