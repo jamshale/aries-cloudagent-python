@@ -35,10 +35,6 @@ jobs:
             exit 1
           fi
           exit $PYTEST_EXIT_CODE
-  sonarcloud:
-    name: SonarCloud
-    runs-on: ubuntu-latest
-    steps:
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
