@@ -58,6 +58,8 @@ jobs:
           mv coverage.xml test-reports
           echo $(ls .)
           echo $(ls test-reports)
+          readlink -e .
+          cat test-reports/coverage.xml
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
