@@ -96,7 +96,7 @@ class AnonCredsHolder:
                         secret = record.value.decode("ascii")
                     except AnoncredsError as err:
                         raise AnonCredsHolderError(
-                            "Error loading master secret"
+                            "Error loading master secret. test"
                         ) from err
                     break
                 else:
