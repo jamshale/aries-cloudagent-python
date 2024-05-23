@@ -50,7 +50,7 @@ jobs:
           echo forked branch = ${{ fromJson(steps.get_pr_data.outputs.data).head.ref }} 
           echo base branch = ${{ fromJson(steps.get_pr_data.outputs.data).base.ref }}
 
-          git checkout -B ${{ fromJson(steps.get_pr_data.outputs.data).head.ref }} upstream/${{ fromJson(steps.get_pr_data.outputs.data).head.ref }}
+          git checkout -B temp-branch-for-scanning upstream/${{ fromJson(steps.get_pr_data.outputs.data).head.ref }}
       - name: Move Coverage Report And Adjust Source
         run: |
           mkdir test-reports
