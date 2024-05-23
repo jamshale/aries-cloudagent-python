@@ -58,7 +58,8 @@ jobs:
           mv coverage.xml test-reports
           echo $(ls .)
           echo $(ls test-reports)
-          readlink -e .
+          sed -i 's/\/home\/runner\/work\/aries-cloudagent-python\/aries-cloudagent-python\//\/github\/workspace\//g' test-reports/coverage.xml
+
           cat test-reports/coverage.xml
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
