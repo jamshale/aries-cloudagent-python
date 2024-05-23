@@ -18,3 +18,4 @@ class BaseAdminServer(ABC):
     @abstractmethod
     async def stop(self) -> None:
         """Stop the webserver."""
+        print("Testing")
