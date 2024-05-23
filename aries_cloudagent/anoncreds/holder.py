@@ -7,16 +7,9 @@ import re
 import uuid
 from typing import Dict, Optional, Sequence, Tuple, Union
 
-from anoncreds import (
-    AnoncredsError,
-    Credential,
-    CredentialRequest,
-    CredentialRevocationState,
-    Presentation,
-    PresentCredentials,
-    create_link_secret,
-    W3cCredential,
-)
+from anoncreds import (AnoncredsError, Credential, CredentialRequest,
+                       CredentialRevocationState, Presentation,
+                       PresentCredentials, W3cCredential, create_link_secret)
 from aries_askar import AskarError, AskarErrorCode
 
 from ..anoncreds.models.anoncreds_schema import AnonCredsSchema
@@ -96,7 +89,7 @@ class AnonCredsHolder:
                         secret = record.value.decode("ascii")
                     except AnoncredsError as err:
                         raise AnonCredsHolderError(
-                            "Error loading master secret"
+                            "Error loading master secret. test"
                         ) from err
                     break
                 else:
