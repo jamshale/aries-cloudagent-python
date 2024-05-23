@@ -490,16 +490,20 @@ async def revoke(request: web.BaseRequest):
         raise web.HTTPBadRequest(
             reason="Request must specify notify_version if notify is true"
         )
+    
+    print('blah')
 
     rev_manager = RevocationManager(profile)
     try:
         if cred_ex_id:
+            print('blah')
             # rev_reg_id and cred_rev_id should not be present so we can
             # safely splat the body
             await rev_manager.revoke_credential_by_cred_ex_id(**body)
         else:
             # no cred_ex_id so we can safely splat the body
             await rev_manager.revoke_credential(**body)
+            print('blah')
         return web.json_response({})
     except (
         RevocationManagerError,
