@@ -14,8 +14,8 @@ from anoncreds import (
     CredentialRevocationState,
     Presentation,
     PresentCredentials,
-    create_link_secret,
     W3cCredential,
+    create_link_secret,
 )
 from aries_askar import AskarError, AskarErrorCode
 
@@ -96,7 +96,7 @@ class AnonCredsHolder:
                         secret = record.value.decode("ascii")
                     except AnoncredsError as err:
                         raise AnonCredsHolderError(
-                            "Error loading master secret"
+                            "Error loading master secret from wallet"
                         ) from err
                     break
                 else:
