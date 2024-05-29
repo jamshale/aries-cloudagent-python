@@ -12,16 +12,29 @@ jobs:
       - uses: actions/checkout@v3
         with:
             fetch-depth: 0 
+      - name: Get the merge commit
+        id: get_pr_commit
+        run: |
+          pr_commit=$(git rev-list --no-merges -n 1 HEAD)
+          echo pr_commit = "$pr_commit"
+          echo commit=$pr_commit >> $GITHUB_OUTPUT
+      - name: Download Test Coverage
+        uses: dawidd6/action-download-artifact@v3
+        with:
+          commit: ${{ steps.get_pr_commit.outputs.commit }}
+          name: TEST_COV
       - name: Tests
         uses: ./.github/actions/run-unit-tests
         with:
             python-version: "3.9"
             os: "ubuntu-latest"
             is_pr: "false" 
-      - name: Adjust Test Coverage Source
+      - name: Move Coverage Report And Adjust Source
         run: |
-            # Need to change source in coverage report because it was generated from another context
-            sed -i 's/\/home\/runner\/work\/aries-cloudagent-python\/aries-cloudagent-python\//\/github\/workspace\//g' test-reports/coverage.xml
+          mkdir test-reports
+          mv coverage.xml test-reports
+          # Need to change source in coverage report because it was generated from another context
+          sed -i 's/\/home\/runner\/work\/aries-cloudagent-python\/aries-cloudagent-python\//\/github\/workspace\//g' test-reports/coverage.xml
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
