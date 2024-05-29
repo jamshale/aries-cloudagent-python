@@ -83,6 +83,7 @@ class AnonCredsHolder:
 
         while True:
             async with self.profile.session() as session:
+                print("Testing")
                 try:
                     record = await session.handle.fetch(
                         CATEGORY_MASTER_SECRET, AnonCredsHolder.MASTER_SECRET_ID
@@ -96,7 +97,7 @@ class AnonCredsHolder:
                         secret = record.value.decode("ascii")
                     except AnoncredsError as err:
                         raise AnonCredsHolderError(
-                            "Error loading master secret from wallet"
+                            "Error loading master secret"
                         ) from err
                     break
                 else:
