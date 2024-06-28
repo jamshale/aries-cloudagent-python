@@ -7,9 +7,9 @@ lifecycle hook callbacks storing state for message threads, etc.
 import asyncio
 import logging
 import os
-from typing import Callable, Coroutine, Union
 import warnings
 import weakref
+from typing import Callable, Coroutine, Union
 
 from aiohttp.web import HTTPException
 
@@ -21,7 +21,7 @@ from ..messaging.base_message import BaseMessage
 from ..messaging.error import MessageParseError
 from ..messaging.models.base import BaseModelError
 from ..messaging.request_context import RequestContext
-from ..messaging.responder import BaseResponder, SKIP_ACTIVE_CONN_CHECK_MSG_TYPES
+from ..messaging.responder import SKIP_ACTIVE_CONN_CHECK_MSG_TYPES, BaseResponder
 from ..messaging.util import datetime_now
 from ..protocols.problem_report.v1_0.message import ProblemReport
 from ..transport.inbound.message import InboundMessage
@@ -298,6 +298,7 @@ class DispatcherResponder(BaseResponder):
             context: The request context of the incoming message
             inbound_message: The inbound message triggering this handler
             send_outbound: Async function to send outbound message
+            kwargs: Additional keyword arguments
 
         """
         super().__init__(**kwargs)
@@ -315,6 +316,10 @@ class DispatcherResponder(BaseResponder):
 
         Args:
             message: The message payload
+            kwargs: Additional keyword arguments
+
+        Returns:
+            OutboundMessage: The created outbound message.
         """
         context = self._context()
         if not context:
@@ -338,6 +343,7 @@ class DispatcherResponder(BaseResponder):
 
         Args:
             message: The `OutboundMessage` to be sent
+            kwargs: Additional keyword arguments
         """
         context = self._context()
         if not context:
