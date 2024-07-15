@@ -2,10 +2,10 @@
 
 import logging
 
+from ..config.base import InjectionError
+from ..config.injector import BaseInjector
 from ..config.provider import BaseProvider
 from ..config.settings import BaseSettings
-from ..config.injector import BaseInjector
-from ..config.base import InjectionError
 from ..utils.classloader import ClassLoader, ClassNotFoundError
 
 LOGGER = logging.getLogger(__name__)
@@ -19,11 +19,11 @@ class MultitenantManagerProvider(BaseProvider):
 
     askar_profile_manager_path = (
         "aries_cloudagent.multitenant."
-        "askar_profile_manager.AskarProfileMultitenantManager"
+        "single_wallet_askar_manager.SingleWalletAskarMultitenantManager"
     )
     MANAGER_TYPES = {
         "basic": "aries_cloudagent.multitenant.manager.MultitenantManager",
-        "askar-profile": askar_profile_manager_path,
+        "single-wallet-askar": askar_profile_manager_path,
     }
 
     def __init__(self, root_profile):
