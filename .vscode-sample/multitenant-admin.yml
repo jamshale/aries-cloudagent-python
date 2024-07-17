@@ -4,7 +4,7 @@ auto-provision: true
 label: multitenant-admin
 
 inbound-transport:
-   - [http, 0.0.0.0, 9050]
+   - [http, 0.0.0.0, 9030]
 
 outbound-transport: http
 
@@ -16,9 +16,9 @@ multitenancy-config: '{"wallet_type": "single-wallet-askar"}'
 
 admin-insecure-mode: true
 
-admin: [0.0.0.0, 9051]
+admin: [0.0.0.0, 9031]
 
-endpoint: http://localhost:9050
+endpoint: http://localhost:9030
 
 genesis-url: http://localhost:9000/genesis
 
