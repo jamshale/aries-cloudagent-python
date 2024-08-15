@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="https://raw.githubusercontent.com/hyperledger/aries-cloudagent-python/main/docs/assets/aries-favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.30">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.31">
     
     
       
@@ -508,7 +508,16 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Overview">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lts-releases" class="md-nav__link">
+    <span class="md-ellipsis">
+      LTS Releases
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LTS Releases">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -669,6 +678,27 @@
   
   <span class="md-ellipsis">
     Release Notes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="LTS-Strategy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ACA-Py Long Term Support (LTS) Policy
   </span>
   
 
@@ -1860,6 +1890,27 @@
   
   
     <li class="md-nav__item">
+      <a href="deploying/BBSSignatures/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Enabling BBS Signatures support
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="deploying/IndySDKtoAskarMigration/" class="md-nav__link">
         
   
@@ -2365,7 +2416,16 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Overview">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lts-releases" class="md-nav__link">
+    <span class="md-ellipsis">
+      LTS Releases
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LTS Releases">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2544,6 +2604,28 @@ Check it out! It's much easier to navigate than this GitHub repo for reading the
 <p>To use ACA-Py you create a business logic controller that "talks to" an ACA-Py instance (sending HTTP requests and receiving webhook notifications), and ACA-Py handles the Aries and DIDComm protocols and related functionality. Your controller can be built in any language that supports making and receiving HTTP requests; knowledge of Python is not needed. Together, this means you can focus on building VC solutions using familiar web development technologies, instead of having to learn the nuts and bolts of low-level cryptography and Trust over IP-type Aries protocols.</p>
 <p>This <a href="https://github.com/hyperledger/aries-cloudagent-python/blob/main/./features/SupportedRFCs.md">checklist-style overview document</a> provides a full list of the features in ACA-Py.
 The following is a list of some of the core features needed for a production deployment, with a link to detailed information about the capability.</p>
+<h2 id="lts-releases">LTS Releases<a class="headerlink" href="#lts-releases" title="Permanent link">&para;</a></h2>
+<p>The ACA-Py community provides periodic releases with new features and
+improvements. Certain releases are designated by the ACA-Py maintainers as
+long-term support (LTS) releases and listed in this document. Critical bugs and
+important (as determined by the ACA-Py Maintainers) fixes will be backported to
+the active LTS releases. Each LTS release will be supported with patches for <strong>9
+months</strong> following the designation of the <strong>next</strong> LTS Release. For more details see
+the <a href="LTS-Strategy/">LTS strategy</a>.</p>
+<p>Current LTS releases are:</p>
+<ul>
+<li><a href="https://github.com/hyperledger/aries-cloudagent-python/releases/tag/0.12.1">0.12</a> <strong>Current LTS Release</strong></li>
+<li><a href="https://github.com/hyperledger/aries-cloudagent-python/releases/tag/0.11.1">0.11</a> <strong>End of Life: January 2025</strong></li>
+</ul>
+<p>Unless specified in the <strong>Breaking Changes</strong> section of the ACA-Py
+<a href="CHANGELOG/">CHANGELOG</a>, all LTS patch releases will be able to be deployed
+<strong>without</strong> an upgrade process from its prior release. Minor/Major release upgrades
+steps (if any) of ACA-Py are tested and documented in the ACA-Py
+<a href="CHANGELOG/">CHANGELOG</a> per release and in the project documents published
+at <a href="https://aca-py.org">https://aca-py.org</a> from the markdown files in this
+repository.</p>
+<p>ACA-Py releases and release notes can be found on the <a href="https://github.com/hyperledger/aries-cloudagent-python/releases">GitHub releases
+page</a>.</p>
 <h3 id="multi-tenant">Multi-Tenant<a class="headerlink" href="#multi-tenant" title="Permanent link">&para;</a></h3>
 <p>ACA-Py supports "multi-tenant" scenarios. In these scenarios, one (scalable) instance of ACA-Py uses one database instance, and are together capable of managing separate secure storage (for private keys, DIDs, credentials, etc.) for many different actors. This enables (for example) an "issuer-as-a-service", where an enterprise may have many VC issuers, each with different identifiers, using the same instance of ACA-Py to interact with VC holders as required. Likewise, an ACA-Py instance could be a "cloud wallet" for many holders (e.g. people or organizations) that, for whatever reason, cannot use a mobile device for a wallet. Learn more about multi-tenant deployments <a href="https://github.com/hyperledger/aries-cloudagent-python/blob/main/./features/Multitenancy.md">here</a>.</p>
 <h3 id="mediator-service">Mediator Service<a class="headerlink" href="#mediator-service" title="Permanent link">&para;</a></h3>
