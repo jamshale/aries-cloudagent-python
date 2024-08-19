@@ -12,37 +12,37 @@ Feature: RFC 0453 Aries agent issue credential
     When "Acme" offers a credential with data <Credential_data>
     Then "Bob" has the credential issued
 
-    @Release @WalletType_Askar @BasicTest
+    @WalletType_Askar @BasicTest
     Examples:
        | Acme_capabilities                      | Bob_capabilities          | Schema_name    | Credential_data          | Acme_extra | Bob_extra |
        | --public-did --did-exchange            | --did-exchange            | driverslicense | Data_DL_NormalizedValues |            |           |
 
-    @Release @WalletType_Askar @AltTests
+    @WalletType_Askar @AltTests
     Examples:
        | Acme_capabilities                      | Bob_capabilities          | Schema_name    | Credential_data          | Acme_extra | Bob_extra |
        | --public-did                           |                           | driverslicense | Data_DL_NormalizedValues |            |           |
        | --public-did --mediation               | --mediation               | driverslicense | Data_DL_NormalizedValues |            |           |
        | --public-did --multitenant             | --multitenant --log-file  | driverslicense | Data_DL_NormalizedValues |            |           |
 
-    @Release @WalletType_Askar_AnonCreds @BasicTest @cred_type_vc_di
+    @WalletType_Askar_AnonCreds @BasicTest @cred_type_vc_di
     Examples:
        | Acme_capabilities                                            | Bob_capabilities              | Schema_name    | Credential_data          | Acme_extra | Bob_extra |
        | --public-did --wallet-type askar-anoncreds                   | --wallet-type askar-anoncreds | driverslicense | Data_DL_NormalizedValues |            |           |
        | --public-did --wallet-type askar-anoncreds --cred-type vc_di | --wallet-type askar-anoncreds | driverslicense | Data_DL_NormalizedValues |            |           |
 
-    @Release @WalletType_Askar_AnonCreds @AltTests
+    @WalletType_Askar_AnonCreds @AltTests
     Examples:
        | Acme_capabilities                          | Bob_capabilities              | Schema_name    | Credential_data          | Acme_extra | Bob_extra |
        | --public-did --wallet-type askar-anoncreds |                               | driverslicense | Data_DL_NormalizedValues |            |           |
        | --public-did                               | --wallet-type askar-anoncreds | driverslicense | Data_DL_NormalizedValues |            |           |
 
-    @PR @Release @WalletType_Askar @ConnectionTests
+    @WalletType_Askar @ConnectionTests
     Examples:
        | Acme_capabilities                                    | Bob_capabilities                                     | Schema_name    | Credential_data          | Acme_extra | Bob_extra |
        | --did-exchange --emit-did-peer-4                     | --did-exchange --emit-did-peer-4                     | driverslicense | Data_DL_NormalizedValues |            |           |
        | --did-exchange --reuse-connections --emit-did-peer-4 | --did-exchange --reuse-connections --emit-did-peer-4 | driverslicense | Data_DL_NormalizedValues |            |           |
 
-    @PR @Release @WalletType_Askar_AnonCreds @ConnectionTests
+    @WalletType_Askar_AnonCreds @ConnectionTests
     Examples:
        | Acme_capabilities                                                                  | Bob_capabilities                                                                   | Schema_name    | Credential_data          | Acme_extra | Bob_extra |
        | --did-exchange --wallet-type askar-anoncreds --emit-did-peer-4                     | --did-exchange --wallet-type askar-anoncreds --emit-did-peer-4                     | driverslicense | Data_DL_NormalizedValues |            |           |
@@ -82,7 +82,7 @@ Feature: RFC 0453 Aries agent issue credential
     And "Acme" offers and deletes a credential with data <Credential_data>
     Then "Bob" has the exchange abandoned
 
-    @PR @Release @WalletType_Askar
+    @WalletType_Askar
     Examples:
        | Acme_capabilities                      | Bob_capabilities          | Schema_name    | Credential_data          |
        | --public-did                           |                           | driverslicense | Data_DL_NormalizedValues |
@@ -110,7 +110,7 @@ Feature: RFC 0453 Aries agent issue credential
     And "Acme" is ready to issue a credential for <Schema_name>
     When "Bob" requests a credential with data <Credential_data> from "Acme" it fails
 
-    @PR @Release @WalletType_Askar
+    @WalletType_Askar
     Examples:
        | Acme_capabilities                      | Bob_capabilities          | Schema_name    | Credential_data          |
        | --public-did                           |                           | driverslicense | Data_DL_NormalizedValues |
@@ -141,13 +141,13 @@ Feature: RFC 0453 Aries agent issue credential
     Then "Bob" has the json-ld credential issued
     And "Acme" has the exchange completed
 
-    @PR @Release @WalletType_Askar
+    @WalletType_Askar
     Examples:
        | Acme_capabilities                | Bob_capabilities | Schema_name    | Credential_data          | Key_type | Sig_type             |
        | --public-did --cred-type json-ld |                  | driverslicense | Data_DL_NormalizedValues | ed25519  | Ed25519Signature2018 |
        | --public-did --cred-type json-ld |                  | driverslicense | Data_DL_NormalizedValues | ed25519  | Ed25519Signature2020 |
 
-    @PR @Release @WalletType_Askar @BBS
+    @WalletType_Askar @BBS
     Examples:
        | Acme_capabilities                | Bob_capabilities | Schema_name    | Credential_data          | Key_type   | Sig_type            |
        | --public-did --cred-type json-ld |                  | driverslicense | Data_DL_NormalizedValues | bls12381g2 | BbsBlsSignature2020 |
@@ -193,18 +193,18 @@ Feature: RFC 0453 Aries agent issue credential
     When "Acme" offers "Bob" a json-ld credential with data <Credential_data> and <Sig_type>
     Then "Bob" has the json-ld credential issued
 
-    @PR @Release @WalletType_Askar
+    @WalletType_Askar
     Examples:
        | Acme_capabilities                                         | Bob_capabilities          | Schema_name    | Credential_data          | Key_type | Sig_type             |
        | --public-did --cred-type json-ld                          |                           | driverslicense | Data_DL_NormalizedValues | ed25519  | Ed25519Signature2018 |
        | --public-did --cred-type json-ld                          |                           | driverslicense | Data_DL_NormalizedValues | ed25519  | Ed25519Signature2020 |
 
-    @PR @Release @WalletType_Askar @BBS
+    @WalletType_Askar @BBS
     Examples:
        | Acme_capabilities                                         | Bob_capabilities          | Schema_name    | Credential_data          | Key_type   | Sig_type            |
        | --public-did --cred-type json-ld                          |                           | driverslicense | Data_DL_NormalizedValues | bls12381g2 | BbsBlsSignature2020 |
 
-    @Release @WalletType_Askar
+    @WalletType_Askar
     Examples:
        | Acme_capabilities                                         | Bob_capabilities          | Schema_name    | Credential_data          | Key_type | Sig_type             |
        | --public-did --cred-type json-ld --did-exchange           | --did-exchange            | driverslicense | Data_DL_NormalizedValues | ed25519  | Ed25519Signature2018 | 
@@ -214,14 +214,14 @@ Feature: RFC 0453 Aries agent issue credential
        | --public-did --cred-type json-ld --mediation              | --mediation               | driverslicense | Data_DL_NormalizedValues | ed25519  | Ed25519Signature2020 |
        | --public-did --cred-type json-ld --multitenant --log-file | --multitenant             | driverslicense | Data_DL_NormalizedValues | ed25519  | Ed25519Signature2020 |
 
-    @Release @WalletType_Askar @BBS
+    @WalletType_Askar @BBS
     Examples:
        | Acme_capabilities                                         | Bob_capabilities          | Schema_name    | Credential_data          | Key_type   | Sig_type            |
        | --public-did --cred-type json-ld --did-exchange           | --did-exchange            | driverslicense | Data_DL_NormalizedValues | bls12381g2 | BbsBlsSignature2020 |
        | --public-did --cred-type json-ld --mediation              | --mediation               | driverslicense | Data_DL_NormalizedValues | bls12381g2 | BbsBlsSignature2020 |
        | --public-did --cred-type json-ld --multitenant --log-file | --multitenant             | driverslicense | Data_DL_NormalizedValues | bls12381g2 | BbsBlsSignature2020 |
 
-    @Release @WalletType_Askar_AnonCreds
+    @WalletType_Askar_AnonCreds
     Examples:
        | Acme_capabilities                                                             | Bob_capabilities                             | Schema_name    | Credential_data          | Key_type | Sig_type             |
        | --public-did --cred-type json-ld --wallet-type askar-anoncreds                | --wallet-type askar-anoncreds                | driverslicense | Data_DL_NormalizedValues | ed25519  | Ed25519Signature2018 |
@@ -229,7 +229,7 @@ Feature: RFC 0453 Aries agent issue credential
        | --public-did --cred-type json-ld --wallet-type askar-anoncreds                | --wallet-type askar-anoncreds                | driverslicense | Data_DL_NormalizedValues | ed25519  | Ed25519Signature2020 |
        | --public-did --cred-type json-ld --did-exchange --wallet-type askar-anoncreds | --did-exchange --wallet-type askar-anoncreds | driverslicense | Data_DL_NormalizedValues | ed25519  | Ed25519Signature2020 |
 
-    @Release @WalletType_Askar_AnonCreds @BBS
+    @WalletType_Askar_AnonCreds @BBS
     Examples:
        | Acme_capabilities                                                             | Bob_capabilities                             | Schema_name    | Credential_data          | Key_type   | Sig_type            |
        | --public-did --cred-type json-ld --wallet-type askar-anoncreds                | --wallet-type askar-anoncreds                | driverslicense | Data_DL_NormalizedValues | bls12381g2 | BbsBlsSignature2020 |
@@ -262,18 +262,18 @@ Feature: RFC 0453 Aries agent issue credential
     When "Bob" requests a json-ld credential with data <Credential_data> from "Acme" with <Sig_type>
     Then "Bob" has the json-ld credential issued
 
-    @PR @Release @WalletType_Askar
+    @WalletType_Askar
     Examples:
        | Acme_capabilities                                   | Bob_capabilities          | Schema_name    | Credential_data          | Key_type | Sig_type             |
        | --public-did --cred-type json-ld                    |                           | driverslicense | Data_DL_NormalizedValues | ed25519  | Ed25519Signature2018 |
        | --public-did --cred-type json-ld                    |                           | driverslicense | Data_DL_NormalizedValues | ed25519  | Ed25519Signature2020 |
 
-    @PR @Release @WalletType_Askar @BBS
+    @WalletType_Askar @BBS
     Examples:
        | Acme_capabilities                                   | Bob_capabilities          | Schema_name    | Credential_data          | Key_type   | Sig_type            | 
        | --public-did --cred-type json-ld                    |                           | driverslicense | Data_DL_NormalizedValues | bls12381g2 | BbsBlsSignature2020 |
     
-    @Release @WalletType_Askar
+    @WalletType_Askar
     Examples:
        | Acme_capabilities                                   | Bob_capabilities          | Schema_name    | Credential_data          | Key_type | Sig_type             |
        | --public-did --cred-type json-ld --did-exchange     | --did-exchange            | driverslicense | Data_DL_NormalizedValues | ed25519  | Ed25519Signature2018 |
@@ -283,20 +283,20 @@ Feature: RFC 0453 Aries agent issue credential
        | --public-did --cred-type json-ld --mediation        | --mediation               | driverslicense | Data_DL_NormalizedValues | ed25519  | Ed25519Signature2020 |
        | --public-did --cred-type json-ld --multitenant      | --multitenant             | driverslicense | Data_DL_NormalizedValues | ed25519  | Ed25519Signature2020 |
 
-    @Release @WalletType_Askar @BBS
+    @WalletType_Askar @BBS
     Examples:
        | Acme_capabilities                                   | Bob_capabilities          | Schema_name    | Credential_data          | Key_type   | Sig_type            |
        | --public-did --cred-type json-ld --did-exchange     | --did-exchange            | driverslicense | Data_DL_NormalizedValues | bls12381g2 | BbsBlsSignature2020 |
        | --public-did --cred-type json-ld --mediation        | --mediation               | driverslicense | Data_DL_NormalizedValues | bls12381g2 | BbsBlsSignature2020 |
        | --public-did --cred-type json-ld --multitenant      | --multitenant             | driverslicense | Data_DL_NormalizedValues | bls12381g2 | BbsBlsSignature2020 |
 
-    @PR @Release @WalletType_Askar_AnonCreds
+    @WalletType_Askar_AnonCreds
     Examples:
        | Acme_capabilities                                              | Bob_capabilities              | Schema_name    | Credential_data          | Key_type | Sig_type             |
        | --public-did --cred-type json-ld --wallet-type askar-anoncreds | --wallet-type askar-anoncreds | driverslicense | Data_DL_NormalizedValues | ed25519  | Ed25519Signature2018 |
        | --public-did --cred-type json-ld --wallet-type askar-anoncreds | --wallet-type askar-anoncreds | driverslicense | Data_DL_NormalizedValues | ed25519  | Ed25519Signature2020 |
 
-   @PR @Release @WalletType_Askar_AnonCreds @BBS
+   @WalletType_Askar_AnonCreds @BBS
     Examples:
        | Acme_capabilities                                              | Bob_capabilities              | Schema_name    | Credential_data          | Key_type   | Sig_type            |
        | --public-did --cred-type json-ld --wallet-type askar-anoncreds | --wallet-type askar-anoncreds | driverslicense | Data_DL_NormalizedValues | bls12381g2 | BbsBlsSignature2020 |
@@ -313,14 +313,14 @@ Feature: RFC 0453 Aries agent issue credential
     Then "Acme" revokes the credential
     And "Bob" has the credential issued
 
-    @Release @WalletType_Askar
+    @WalletType_Askar
     Examples:
        | Acme_capabilities                        | Bob_capabilities  | Schema_name    | Credential_data          |
        | --revocation --public-did                |                   | driverslicense | Data_DL_NormalizedValues |
        | --revocation --public-did --did-exchange | --did-exchange    | driverslicense | Data_DL_NormalizedValues |
        | --revocation --public-did --multitenant  | --multitenant     | driverslicense | Data_DL_NormalizedValues |
 
-    @Release @WalletType_Askar_AnonCreds
+    @WalletType_Askar_AnonCreds
     Examples:
        | Acme_capabilities                                       | Bob_capabilities              | Schema_name    | Credential_data          |
        | --revocation --public-did --wallet-type askar-anoncreds | --wallet-type askar-anoncreds | driverslicense | Data_DL_NormalizedValues |

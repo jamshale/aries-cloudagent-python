@@ -1,0 +1,126 @@
+ services:
+  alice:
+    image: acapy-test
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./tunnel_endpoint.sh:/tunnel_endpoint.sh:ro,z
+    environment:
+      AGENT_TUNNEL_ENDPOINT: http://tunnel-alice:4040
+      TAILS_TUNNEL_ENDPOINT: http://tunnel-tails:4040
+    entrypoint: >
+      /bin/sh -c '/tunnel_endpoint.sh aca-py "$$@"' --
+    command: >
+      start
+        --label Alice
+        --inbound-transport http 0.0.0.0 3000
+        --outbound-transport http
+        --admin 0.0.0.0 3001
+        --admin-insecure-mode
+        --tails-server-base-url http://tails:6543
+        --genesis-url https://raw.githubusercontent.com/Indicio-tech/indicio-network/main/genesis_files/pool_transactions_testnet_genesis
+        --wallet-type askar
+        --wallet-name alice
+        --wallet-key insecure
+        --auto-provision
+        --log-level debug
+        --debug-webhooks
+    healthcheck:
+      test: curl -s -o /dev/null -w '%{http_code}' "http://localhost:3001/status/live" | grep "200" > /dev/null
+      start_period: 30s
+      interval: 7s
+      timeout: 5s
+      retries: 5
+    depends_on:
+      tails:
+        condition: service_started
+      tunnel-alice:
+        condition: service_started
+
+  bob:
+    image: acapy-test
+    ports:
+      - "3002:3001"
+    volumes:
+      - ./tunnel_endpoint.sh:/tunnel_endpoint.sh:ro,z
+    environment:
+      AGENT_TUNNEL_ENDPOINT: http://tunnel-bob:4040
+      TAILS_TUNNEL_ENDPOINT: http://tunnel-tails:4040
+    entrypoint: >
+      /bin/sh -c '/tunnel_endpoint.sh aca-py "$$@"' --
+    command: >
+      start
+        --label Bob
+        --inbound-transport http 0.0.0.0 3000
+        --outbound-transport http
+        --admin 0.0.0.0 3001
+        --admin-insecure-mode
+        --tails-server-base-url http://tails:6543
+        --genesis-url https://raw.githubusercontent.com/Indicio-tech/indicio-network/main/genesis_files/pool_transactions_testnet_genesis
+        --wallet-type askar
+        --wallet-name bob
+        --wallet-key insecure
+        --auto-provision
+        --log-level debug
+        --debug-webhooks
+        --monitor-revocation-notification
+    healthcheck:
+      test: curl -s -o /dev/null -w '%{http_code}' "http://localhost:3001/status/live" | grep "200" > /dev/null
+      start_period: 30s
+      interval: 7s
+      timeout: 5s
+      retries: 5
+    depends_on:
+      tails:
+        condition: service_started
+      tunnel-bob:
+        condition: service_started
+
+  tunnel-alice:
+    image: dbluhm/agent-tunnel
+    command: -s alice:3000 -p 4040 -h ${AGENT_TUNNEL_HOST}
+
+  tunnel-bob:
+    image: dbluhm/agent-tunnel
+    command: -s bob:3000 -p 4040 -h ${AGENT_TUNNEL_HOST}
+
+  example:
+    container_name: controller
+    build:
+      context: ../..
+    environment:
+      - ALICE=http://alice:3001
+      - BOB=http://bob:3001
+    volumes:
+      - ../../controller:/usr/src/app/controller:ro,z
+      - ./example.py:/usr/src/app/example.py:ro,z
+    command: python -m example
+    depends_on:
+      alice:
+        condition: service_healthy
+      bob:
+        condition: service_healthy
+
+  tunnel-tails:
+    image: ngrok/ngrok
+    command: start --all
+    environment:
+      - NGROK_CONFIG=/etc/ngrok.yml
+    volumes:
+      - ./ngrok.yml:/etc/ngrok.yml
+
+  tails:
+    image: ghcr.io/bcgov/tails-server:latest
+    ports:
+      - 6543:6543
+    environment:
+      - GENESIS_URL=https://raw.githubusercontent.com/Indicio-tech/indicio-network/main/genesis_files/pool_transactions_testnet_genesis
+    command: >
+      tails
+       --host 0.0.0.0
+      --port 6543
+      --storage-path /tmp/tails-files
+      --log-level INFO
+    depends_on:
+      tunnel-tails:
+        condition: service_started
