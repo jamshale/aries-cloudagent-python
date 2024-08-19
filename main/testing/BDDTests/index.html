@@ -20,7 +20,7 @@
     
     
       
-        <title>ACA-Py Integration Tests - Hyperledger Aries ACA-Py Docs</title>
+        <title>ACA-Py Integration BDD Tests - Hyperledger Aries ACA-Py Docs</title>
       
     
     
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ACA-Py Integration Tests
+              ACA-Py Integration BDD Tests
             
           </span>
         </div>
@@ -1964,7 +1964,7 @@
           
   
   <span class="md-ellipsis">
-    ACA-Py Integration Tests
+    ACA-Py Integration BDD Tests
   </span>
   
 
@@ -1975,7 +1975,7 @@
         
   
   <span class="md-ellipsis">
-    ACA-Py Integration Tests
+    ACA-Py Integration BDD Tests
   </span>
   
 
@@ -2467,7 +2467,7 @@ Aries Agent Test Harness tests before you submit your pull requests.</p>
 <a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>./run_bdd<span class="w"> </span>-t<span class="w"> </span>~@taa_required
 </code></pre></div>
 <p>Note that an Indy ledger and tails server are both required (these can also be specified using environment variables).</p>
-<p>Note also that some tests require a ledger with TAA enabled, how to run these tests will be described later.</p>
+<p>Note also that some tests require a ledger with TAA enabled, how to run tEhese tests will be described later.</p>
 <p>By default the test suite runs using a default (SQLite) wallet, to run the tests using postgres run the following:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># run the above commands, up to cd aries-cloudagent-python/demo</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>some-postgres<span class="w"> </span>-e<span class="w"> </span><span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span>mysecretpassword<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">5432</span>:5432<span class="w"> </span>postgres:10
