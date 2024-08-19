@@ -22,3 +22,4 @@ These tests should be used to test RFCS protocols that are specific to aca-py an
 
 These tests utilize the minimal example [agent](https://github.com/Indicio-tech/acapy-minimal-example) produced by Indicio.  
 
+
