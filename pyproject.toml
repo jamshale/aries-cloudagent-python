@@ -1,17 +1,17 @@
 [tool.poetry]
-name = "aries_cloudagent"
+name = "acapy_agent"
 version = "1.0.1rc0"
 description = "Hyperledger Aries Cloud Agent Python (ACA-Py) is a foundation for building decentralized identity applications and services running in non-mobile environments. "
 authors = ["Hyperledger Aries <aries@lists.hyperledger.org>"]
 license = "Apache-2.0"
 readme = "README.md"
-packages = [{include = "aries_cloudagent"}]
+packages = [{include = "acapy_agent"}]
 classifiers = [
             "Programming Language :: Python :: 3",
             "License :: OSI Approved :: Apache Software License",
 	    "Operating System :: OS Independent",
 ]
-repository = "https://github.com/hyperledger/aries-cloudagent-python"
+repository = "https://github.com/openwallet-foundation/acapy"
 
 
 [tool.poetry.dependencies]
@@ -95,7 +95,7 @@ didcommv2 = [
 ]
 
 [tool.poetry.scripts]
-aca-py = "aries_cloudagent.__main__:script_main"
+aca-py = "acapy_agent.__main__:script_main"
 
 [tool.ruff]
 lint.select = ["B006", "C", "D", "E", "F"]
@@ -110,7 +110,7 @@ lint.ignore = [
     "C901",
 ]
 
-include = ["aries_cloudagent/**/*.py"]
+include = ["acapy_agent/**/*.py"]
 
 line-length = 90
 
@@ -118,10 +118,10 @@ line-length = 90
 "**/{tests}/*" = ["B006", "D", "E501", "F841"]
 
 [tool.pytest.ini_options]
-testpaths = "aries_cloudagent"
+testpaths = "acapy_agent"
 addopts = """
     --quiet --junitxml=./test-reports/junit.xml
-    --cov-config .coveragerc --cov=aries_cloudagent --cov-report term --cov-report xml
+    --cov-config .coveragerc --cov=acapy_agent --cov-report term --cov-report xml
     --ruff
 """
 markers = [
