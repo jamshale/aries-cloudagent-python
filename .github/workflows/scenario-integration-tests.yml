@@ -20,7 +20,7 @@ defaults:
 jobs:
   test:
     runs-on: ubuntu-latest
-    if: (github.event_name == 'pull_request' && github.event.pull_request.draft == false && github.repository == 'hyperledger/aries-cloudagent-python') || (github.event_name != 'pull_request')
+    if: (github.event_name == 'pull_request' && github.event.pull_request.draft == false && github.repository == 'jamie-quartech/acapy') || (github.event_name != 'pull_request')
     steps:
       - name: checkout-acapy
         uses: actions/checkout@v4
@@ -33,7 +33,7 @@ jobs:
           files_yaml: |
             scenarios: "scenarios/**/*"
             src: 
-              - aries_cloudagent/**/*
+              - acapy_agent/**/*
               - poetry.lock 
               - pyproject.toml
       - name: Check if scenarios or src files changed
