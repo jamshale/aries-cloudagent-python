@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "acapy_agent"
+name = "acapy_agent_jamie-testing"
 version = "1.0.1rc0"
 description = "(ACA-Py) A Cloud Agent Python is a foundation for building decentralized identity applications and services running in non-mobile environments. "
 authors = []
@@ -11,7 +11,7 @@ classifiers = [
             "License :: OSI Approved :: Apache Software License",
 	    "Operating System :: OS Independent",
 ]
-repository = "https://github.com/openwallet-foundation/acapy"
+repository = "https://github.com/jamie-quartech/acapy"
 
 
 [tool.poetry.dependencies]

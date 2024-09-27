@@ -20,7 +20,7 @@ defaults:
 jobs:
   test:
     runs-on: ubuntu-latest
-    if: (github.event_name == 'pull_request' && github.event.pull_request.draft == false && github.repository == 'openwallet-foundation/acapy') || (github.event_name != 'pull_request')
+    if: (github.event_name == 'pull_request' && github.event.pull_request.draft == false && github.repository == 'jamie-quartech/acapy') || (github.event_name != 'pull_request')
     steps:
       - name: checkout-acapy
         uses: actions/checkout@v4
