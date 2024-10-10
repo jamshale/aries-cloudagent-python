@@ -10,7 +10,7 @@ from typing import ClassVar, Pattern, Tuple, Union
 class MessageVersion:
     """Message type version."""
 
-    PATTERN: ClassVar[Pattern] = re.compile(r"^(0|[1-9]\d*)\.(0|[1-9]\d*)$")
+    PATTERN: ClassVar[Pattern] = re.compile(r"^(0|[1-9]\d*)\.(0|[1-9]\d*)*$")
 
     major: int
     minor: int
